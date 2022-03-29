@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+loguru = "*"
+django-rest-framework = "*"
+python-dotenv = "*"
+cookiecutter = "*"
+gunicorn = "==20.1.0"
+psycopg2-binary = "==2.9.3"
+djangorestframework = "==3.13.1"
+django-filter = "==21.1"
+Django = "==4.0.3"
+Markdown = "==3.3.6"
+djangorestframework-jwt = "*"
+djangorestframework-simplejwt = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
