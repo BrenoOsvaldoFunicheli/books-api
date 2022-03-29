@@ -38,6 +38,7 @@ class Folder(models.Model):
     name = models.CharField('Cat', max_length=200)
     description = models.TextField('Cat', null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    public = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.name
