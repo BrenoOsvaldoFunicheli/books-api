@@ -14,6 +14,14 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+from dotenv import load_dotenv
+import os
+
+# used to manage language of models and others
+from .translate import dictionary
+
+
+load_dotenv()  # take environment variables from .env.
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,8 +49,11 @@ INSTALLED_APPS = [
 
     # thirdy-part
     'rest_framework',
-    'authentication',
     'rest_framework_simplejwt',
+
+    # my apps
+    'authentication',
+    'books',
 
 ]
 
@@ -121,7 +132,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE')
 
 TIME_ZONE = 'UTC'
 
@@ -129,6 +141,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
+TRANSLATE = dictionary.get(LANGUAGE_CODE)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

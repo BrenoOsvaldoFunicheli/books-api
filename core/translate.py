@@ -8,6 +8,11 @@ pt = {
 
 } 
 
+en = {
+    'category':'category'
+}
+
 dictionary = {
-    'pt':pt
+    'pt-br':pt,
+    'en-us':en,
 }
