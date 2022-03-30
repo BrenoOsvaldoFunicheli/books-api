@@ -26,7 +26,11 @@ In order to create the real stage API to consuming I follow some best pratice an
 
 * Authentication: I make the API visualization with the JWT tokens to Authentication on each endpoints
 
-* Develop methodologies: We use a git-flow method to develop the features
+* Develop methodologies: We use a git-flow method to develop the features.
+
+* Containerization: The project is practical to run both in a virtual environment and in a docker container.
+
+* Throttling: Global per-user limitation policies have been implemented. This concept was implemented globally, however it can be edited in classes.
 
 ## :blue_book: Requirements and Model
 
@@ -92,7 +96,7 @@ There are two way to build and run this application, first is running with isola
 
 ```
 
-The essencial obs is that we provide virtualenviroment with pipenv to delivery dependecies controll
+The essencial obs is that we provide virtualenviroment with pipenv to delivery dependecies controll. You can access and user that with pipenv controll method.
 
 ### Docker Build
 
@@ -178,6 +182,19 @@ The API consuming were detailed on the postman collection, that implements all s
 
 ## :exclamation: Obs
 
+We provide this section to comment some errors and things that I guess interrest.
+
+* Commits
+    The first point is that there are some commits made in the master, a fact that should be disregarded, as I only made them in order to submit documentation. However, other processes followed the gitFlow scheme.
+
+* Tests
+    Another point is the lack of tests, I particularly love implementing them using Pytest and even the schema provided by drf (django rest framework). However, due to some time issues I didn't do it. However, I have the knowledge to implement them.
+
+* Database
+    You may notice that I left the default db as sqlite, even though in docker I created a postgres container. I've simplified it for quick use in a local way without docker. However, as you can see I added a dotenv where parameters such as the bank can be changed in the future.
+
+* Hard Delete
+    Another point of attention is that the deletion method applied was hard-delete (where the record is actually deleted). Good practices point out that the correct method should be soft. However, as a conceptual example, I am pointing this out to attest to my knowledge on the subject by showing that I could easily implement soft-delete just by adding a deleted flag to the created models.
 
 
 
