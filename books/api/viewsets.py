@@ -42,6 +42,30 @@ def delete_public(request, model, pk=None):
         return Response({'response': {'isDelete': False, 'info': "You can't delete this object"}}, status=500)
 
 
+def save_with_owner(request, model):
+    """this method abstract the creation process
+
+    Args:
+        request (_type_): _description_
+        model (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
+    # get data to insert
+    auth_user_id = request.user.id
+    data = request.data
+    
+    try:
+        data['owner_id'] = auth_user_id
+        o = model.objects.create(**data)
+        o.save()
+
+        return Response({'response': 'Inserted'}, status=201)
+    except Exception as e:
+        return Response({'response': e}, status=500)
+
 class FolderDefaultViewSet(viewsets.ModelViewSet):
     """
     A viewset for viewing and editing folder instances.
@@ -69,8 +93,12 @@ class FolderDefaultViewSet(viewsets.ModelViewSet):
         Returns:
             _type_: _description_
         """
-        return delete_public(request,Folder, pk)
+        return delete_public(request, Folder, pk)
 
+
+    def create(self, request):
+
+        return save_with_owner(request, Folder)
 
 class AuthorDefaultViewSet(viewsets.ModelViewSet):
     """
@@ -100,6 +128,10 @@ class BookDefaultViewSet(viewsets.ModelViewSet):
 
         return Book.objects.filter(owner=authenticated_user)
 
+    def create(self, request):
+
+        return save_with_owner(request, Book)
+
 
 class CategoryDefaultViewSet(viewsets.ModelViewSet):
     """
@@ -113,7 +145,6 @@ class CategoryDefaultViewSet(viewsets.ModelViewSet):
     # example to diferent pagination
     pagination_class = LargeResultsSetPagination
 
-
     def get_queryset(self):
 
         # filter by user ownership
@@ -123,6 +154,10 @@ class CategoryDefaultViewSet(viewsets.ModelViewSet):
         return Category.objects.filter(Q(owner=authenticated_user) | Q(public=True))
 
     def destroy(self, request, pk=None):
-        
+
         # prevente unauthtorized delete
         return delete_public(request, Category, pk)
+
+    def create(self, request):
+
+        return save_with_owner(request, Category)
