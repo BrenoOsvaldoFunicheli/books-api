@@ -44,8 +44,8 @@ class Folder(models.Model):
         return self.name
 
 class Author(models.Model):
-    """_summary_
-
+    """
+    Model to retrive and manage authors to each book
 
     """
     name = models.CharField('', max_length=200)
@@ -54,6 +54,10 @@ class Author(models.Model):
         return self.name
 
 class Book(models.Model):
+    """
+    Model to retrive and manage books
+
+    """
 
     title = models.CharField('Cat', max_length=200)
     description = models.TextField('Cat')

@@ -2,7 +2,7 @@
 
 ## Backend Challenge to provide the API implementation with Django
 
-A complete implementation of RESTful API to store and consume some structures that it contains, such as users, folders, books, categories and tecnologies of projects, which were created using django 3 and django rest_framework.
+A complete implementation of RESTful API to store and consume some structures that it contains, such as users, folders, books, categories and author of projects, which were created using django 3 and django rest_framework.
 
 ## Sections
 
@@ -22,9 +22,11 @@ In order to create the real stage API to consuming I follow some best pratice an
 
 * Versioning: All endpoints contains as prefix /api_v1/ that show the version api is first. So when I change some detail or implementation of API I Don't broken any implementation on my API in other application.
 
-* Pagination: As many people can consuming the endpoints I need provide some throughput data. to first version we apply the limit with 5 registries.
+* Pagination: As many people can consuming the endpoints I need provide some throughput data. to first version we apply the limit with 5 registries. And implement a custom pagination to categories API.
 
 * Authentication: I make the API visualization with the JWT tokens to Authentication on each endpoints
+
+* Develop methodologies: We use a git-flow method to develop the features
 
 ## :blue_book: Requirements and Model
 
@@ -73,7 +75,6 @@ There are two way to build and run this application, first is running with isola
 
 1. Get repository
 2. Make the virtualenv
-3. Run o virtualenv
 4. Install all dependecies
 5. Run test
 6. Run migrations
@@ -82,10 +83,12 @@ There are two way to build and run this application, first is running with isola
 ```console
 
     git clone https://github.com/BrenoOsvaldoFunicheli/books-api.git
-    pipenv install
-    pipenv shell
+    python3 -m venv .env
+    source .env/bin/activate
+    pip install -r requirements.txt
+    python manage.py test
     python manage.py migrate
-    python manage.py runserver 0.0.0.0:8000
+    python manage.py runserver 0.0.0.0:8002
 
 ```
 
@@ -171,14 +174,11 @@ So when you access token through the url [uri]/api/v1/[resource] you can get two
 
 ## :ticket: API Consuming
 
-The API consuming were detailed on the postman collection, that implements all steps to consuming and explain some steps to use. The ordering of steps need to be follow, because you need authentication before consuming. The collection link is 
+The API consuming were detailed on the postman collection, that implements all steps to consuming and explain some steps to use. The ordering of steps need to be follow, because you need authentication before consuming. The collection link is https://documenter.getpostman.com/view/8382418/UVypzcqJ
 
-AQUI
+## :exclamation: Obs
 
-## :exclamation: Difficulty
 
-During the construction of the API I tried to carry out all the requirements, but the only problem was during the construction of the tests, where finding that the fact of using the django user class for authentication causes problems in using the jwt token, therefore, to use functions effectively, it is necessary to create a super user from the manage.py file.
-However, user creation has already been implemented, authentication is not really working with ordinary users. The partial solution is to use django super user to be able to test my app, however, the solution is to create an external class for the user and change the reference of the settings that informs which class is the user.
 
 
 ### Example of the code to create super user
