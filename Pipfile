@@ -17,6 +17,7 @@ Markdown = "==3.3.6"
 djangorestframework-jwt = "*"
 djangorestframework-simplejwt = "*"
 drf-flex-fields = "*"
+django-rest-swagger = "*"
 
 [dev-packages]
 

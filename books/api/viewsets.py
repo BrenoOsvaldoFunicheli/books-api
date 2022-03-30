@@ -11,6 +11,8 @@ from django.shortcuts import get_object_or_404
 
 from django.db.models import Q
 
+from books.api.pagination import LargeResultsSetPagination
+
 
 def delete_public(request, model, pk=None):
     """This method manage delete action 
@@ -107,6 +109,10 @@ class CategoryDefaultViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
+    # example to diferent pagination
+    pagination_class = LargeResultsSetPagination
+
 
     def get_queryset(self):
 
