@@ -36,29 +36,29 @@ The system consists of a creator of navedex's API, where you can register using 
 
 * User tracked: In order to provide some security and isolation of registry all user only have access to own registry with exception of the dad tables, such as tecnologies and jobs.
 
-* Navers Endpoint
-    - Create: create new navers
-    - List: return all values
+* Books Endpoint
+    - Create: create new books
+    - List: return all values that user have ownership
     - Retrive: return the specific
-    - Update: alter navers
+    - Update: alter books
     - Delete: delete the registry
-    - filters: Some user can filter search by naver name, company time or job
     - observation: all registry of this model only can accessed by his own owner and this data need authentication.
 
-* Projects Endpoint
-    - Create: create new projects
+* Categories Endpoint
+    - Create: create new categories
     - List: return all values
     - Retrive: return the specific
     - Update: alter project by JSON information
     - Delete: delete the registry
-    - filters: Some user can filter search by project name
     - observation: all registry of this model only can accessed by his own owner and this data need authentication.
 
-### Model
-
-In order to do the previous requirements, I make model to store data.
-
-![alt text](https://github.com/BrenoOsvaldoFunicheli/naveapi/blob/conversion/documentation/DER.png?raw=true)
+* Folders Endpoint
+    - Create: create new folder that record a book collection
+    - List: return all values
+    - Retrive: return the specific
+    - Update: alter project by JSON information
+    - Delete: delete the registry
+    - observation: all registry of this model only can accessed by his own owner and this data need authentication.
 
 ## :postbox: Testing
 
@@ -81,15 +81,15 @@ There are two way to build and run this application, first is running with isola
 
 ```console
 
-    git clone https://github.com/BrenoOsvaldoFunicheli/naveapi.git
-    python3 -m venv .env
-    source .env/bin/activate
-    pip install -r requirements.txt
-    python manage.py test
+    git clone https://github.com/BrenoOsvaldoFunicheli/books-api.git
+    pipenv install
+    pipenv shell
     python manage.py migrate
-    python manage.py runserver 0.0.0.0:8002
+    python manage.py runserver 0.0.0.0:8000
 
 ```
+
+The essencial obs is that we provide virtualenviroment with pipenv to delivery dependecies controll
 
 ### Docker Build
 
@@ -136,19 +136,12 @@ docker-compose up
 
 After this you need create database on container, because django can't create automatic, the database container is running the postgres. so you need create the database with the name nave.
 
-* Docker attach
-
-``` linux
-
-docker exec -it [container-name] /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
-
-```
 
 * Postgres DDL
 
 ``` sql
 
-CREATE DATABASE nave;
+CREATE DATABASE conceptu;
 
 ```
 
@@ -178,7 +171,9 @@ So when you access token through the url [uri]/api/v1/[resource] you can get two
 
 ## :ticket: API Consuming
 
-The API consuming were detailed on the postman collection, that implements all steps to consuming and explain some steps to use. The ordering of steps need to be follow, because you need authentication before consuming. The collection link is https://documenter.getpostman.com/view/8382418/T1LQfk9N
+The API consuming were detailed on the postman collection, that implements all steps to consuming and explain some steps to use. The ordering of steps need to be follow, because you need authentication before consuming. The collection link is 
+
+AQUI
 
 ## :exclamation: Difficulty
 
