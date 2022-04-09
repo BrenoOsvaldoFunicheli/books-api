@@ -18,6 +18,7 @@ djangorestframework-jwt = "*"
 djangorestframework-simplejwt = "*"
 drf-flex-fields = "*"
 django-rest-swagger = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
